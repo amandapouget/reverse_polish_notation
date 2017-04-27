@@ -20,13 +20,6 @@ describe Calculator do
     allow(calculator).to receive(:gets).and_return(text)
   end
 
-  describe '#start' do
-    it 'begins interaction with the user' do
-      expect(calculator).to receive(:get_input)
-      calculator.start
-    end
-  end
-
   describe '#get_input' do
     it 'indicates the calculator is expecting input' do
       mock_user_input('user input')

@@ -10,6 +10,9 @@ before its operands. It is also known as postfix notation. It does not need any
 parentheses as long as each operator has a fixed number of operands.
 ```
 
+## To run:
+* ruby index.rb
+
 ## Technologies
 * Ruby
 
@@ -23,3 +26,7 @@ http://stackoverflow.com/questions/598672/squash-the-first-two-commits-in-git
 http://stackoverflow.com/questions/37753893/how-to-stub-mock-multiple-options-depending-on-user-input-with-rspec-3-4
 * Rspec Mocks
 http://stackoverflow.com/questions/21262309/rspec-how-to-test-if-a-method-was-called
+http://www.rubydoc.info/github/rspec/rspec-mocks/RSpec/Mocks/ExampleMethods
+* Find a way to load a file multiple times in one spec file in order to maintain segregation between tests
+http://stackoverflow.com/questions/2635108/running-another-ruby-script-from-a-ruby-script
+http://ruby-doc.org/core-2.0.0/Kernel.html#method-i-load
