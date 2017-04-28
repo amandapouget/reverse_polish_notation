@@ -40,3 +40,8 @@ http://caseyscarborough.com/blog/2013/07/23/generating-alphanumeric-strings-in-r
 * That CTRL-D sends 'end-of-file' not a Signal and syntax for testing it
 http://stackoverflow.com/questions/1516122/how-to-capture-controld-signal
 http://stackoverflow.com/questions/21648637/ruby-scan-gets-until-eof
+* Clean equivalent to "drop" for end of an array (sadly, there isn't one)
+http://stackoverflow.com/questions/1604305/all-but-last-element-of-ruby-array
+* Ruby array syntax for writing recursive Calculation.compute method
+https://ruby-doc.org/core-2.2.0/Array.html
+http://stackoverflow.com/questions/2381163/ruby-array-find-first-object

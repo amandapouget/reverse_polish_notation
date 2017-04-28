@@ -24,6 +24,7 @@ describe Communicator do
 
   describe '#start' do
     it 'requests and processes input until stopped' do
+      silence_output
       allow(communicator).to receive(:stopped?).and_return(false, false, true)
       expect(communicator).to receive(:request_input).exactly(2).times
       expect(communicator).to receive(:process_input).exactly(2).times
@@ -78,7 +79,7 @@ describe Communicator do
 
     describe 'when the user sends an invalid request' do
       let(:possible_characters) { (0..255).to_a.map { |int| int.chr } }
-      let(:valid_characters) { '.+-/*0123456789'.split('').push(stop_request) }
+      let(:valid_characters) { ' .+-/*0123456789'.split('').push(stop_request) }
       let(:invalid_characters) { possible_characters - valid_characters }
 
       it 'sends the invalid entry response' do

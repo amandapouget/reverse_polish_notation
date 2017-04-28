@@ -66,7 +66,7 @@ private
   end
 
   def valid?(request)
-    valid_characters = '.+-/*0123456789'.split('').push(STOP_REQUEST)
+    valid_characters = ' .+-/*0123456789'.split('').push(STOP_REQUEST)
     request.chars.all? do |char|
       valid_characters.include?(char)
     end
