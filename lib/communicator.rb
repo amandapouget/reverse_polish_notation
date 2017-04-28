@@ -4,26 +4,71 @@
 require './lib/calculation_controller'
 
 class Communicator
+  REQUEST_INPUT = 'input expression > '
+  INVALID_ENTRY = 'invalid entry: calculation aborted'
+  GOODBYE = 'goodbye, world!'
+  STOP_REQUEST = 'q'
+  private_constant :REQUEST_INPUT
+  private_constant :INVALID_ENTRY
+  private_constant :GOODBYE
+  private_constant :STOP_REQUEST
+
+  def start
+    until stopped? do
+      request = request_input
+      process_input(request)
+    end
+  end
+
+  def stopped?
+    !!@stopped
+  end
+
+  def request_input
+    message = request
+    if !message
+      send
+      message = STOP_REQUEST
+    end
+    message = message.chomp
+    request_input if message == ""
+    message
+  end
+
+  def process_input(request)
+    if request == STOP_REQUEST
+      stop
+      send(GOODBYE)
+    elsif !valid?(request)
+      send(INVALID_ENTRY)
+    else
+      calculation = calculation_controller.calculate(request)
+      send(calculation)
+    end
+  end
+
+private
   def calculation_controller
     @calculation_controller ||= CalculationController.new
   end
 
-  def request_input
-    print 'input expression > '
-  end
-
-  def process_input
-    request = gets.chomp
-    view = calculation_controller.calculate(request)
-    response(view)
-  end
-
-private
   def request
-    gets.chomp
+    print REQUEST_INPUT
+    gets
   end
 
-  def response(data)
+  def send(data = '')
     puts data
+  end
+
+  def stop
+    @stopped = true
+  end
+
+  def valid?(request)
+    valid_characters = '.+-/*0123456789'.split('').push(STOP_REQUEST)
+    request.chars.all? do |char|
+      valid_characters.include?(char)
+    end
   end
 end
