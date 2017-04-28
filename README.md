@@ -30,3 +30,13 @@ http://www.rubydoc.info/github/rspec/rspec-mocks/RSpec/Mocks/ExampleMethods
 * Find a way to load a file multiple times in one spec file in order to maintain segregation between tests
 http://stackoverflow.com/questions/2635108/running-another-ruby-script-from-a-ruby-script
 http://ruby-doc.org/core-2.0.0/Kernel.html#method-i-load
+* Tricks for testing methods with until loops
+https://www.relishapp.com/rspec/rspec-mocks/v/2-13/docs/message-expectations/receive-counts
+https://groups.google.com/forum/#!topic/rspec/oswjBjQ1WPw
+* Private constants
+https://aaronlasseigne.com/2016/10/26/know-ruby-private_constant/
+* Efficient way to generate basic extended list of character input for testing (reference includes benchmarks on various approaches)
+http://caseyscarborough.com/blog/2013/07/23/generating-alphanumeric-strings-in-ruby/
+* That CTRL-D sends 'end-of-file' not a Signal and syntax for testing it
+http://stackoverflow.com/questions/1516122/how-to-capture-controld-signal
+http://stackoverflow.com/questions/21648637/ruby-scan-gets-until-eof
