@@ -18,6 +18,12 @@ describe CalculationController do
       end
     end
   end
+
+  describe '#reset' do
+    it 'forgets the current calculation' do
+      controller.calculate('42')
+      controller.reset
+      expect(controller.calculation).to be nil
     end
   end
 end

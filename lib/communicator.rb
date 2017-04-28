@@ -8,12 +8,15 @@ class Communicator
   INVALID_ENTRY = 'invalid entry: calculation aborted'
   GOODBYE = 'goodbye, world!'
   STOP_REQUEST = 'q'
+  CLEAR = 'clear'
   private_constant :REQUEST_INPUT
   private_constant :INVALID_ENTRY
   private_constant :GOODBYE
   private_constant :STOP_REQUEST
+  private_constant :CLEAR
 
   def start
+    send 'Type \'clear\' to reset your calculation.'
     until stopped? do
       request = request_input
       process_input(request)
@@ -39,7 +42,10 @@ class Communicator
     if request == STOP_REQUEST
       stop
       send(GOODBYE)
+    elsif request == CLEAR
+      calculation_controller.reset
     elsif !valid?(request)
+      calculation_controller.reset
       send(INVALID_ENTRY)
     else
       calculation = calculation_controller.calculate(request)

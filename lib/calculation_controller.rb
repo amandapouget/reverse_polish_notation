@@ -13,6 +13,10 @@ class CalculationController
     result_view
   end
 
+  def reset
+    @calculation = nil
+  end
+
 private
   def result_view
     "result: " + @calculation.compute.to_s
