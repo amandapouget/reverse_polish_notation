@@ -10,7 +10,23 @@ before its operands. It is also known as postfix notation. It does not need any
 parentheses as long as each operator has a fixed number of operands.
 ```
 
+## To run:
+* ruby index.rb
+
 ## Technologies
 * Ruby
 
 ## References Used
+* Syntax about testing capturing stdin / stdout: referred to a copy of the exceedingly simple and unfinished 'card game of war' program I wrote more than a year and a half ago as a learning exercise.
+* Resolve unexpected error when using 'pry' gem: http://stackoverflow.com/questions/26860140/pry-nav-work-unexpectedly
+* Difference between $stdout and STDOUT in Ruby: http://stackoverflow.com/questions/21343523/does-ruby-use-stdout-for-writing-the-output-of-puts-and-return
+* Git syntax foo for squashing into the first commit:
+http://stackoverflow.com/questions/598672/squash-the-first-two-commits-in-git
+* Mock user input (object receives :gets not $stdin)
+http://stackoverflow.com/questions/37753893/how-to-stub-mock-multiple-options-depending-on-user-input-with-rspec-3-4
+* Rspec Mocks
+http://stackoverflow.com/questions/21262309/rspec-how-to-test-if-a-method-was-called
+http://www.rubydoc.info/github/rspec/rspec-mocks/RSpec/Mocks/ExampleMethods
+* Find a way to load a file multiple times in one spec file in order to maintain segregation between tests
+http://stackoverflow.com/questions/2635108/running-another-ruby-script-from-a-ruby-script
+http://ruby-doc.org/core-2.0.0/Kernel.html#method-i-load
