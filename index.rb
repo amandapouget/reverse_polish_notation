@@ -1,7 +1,9 @@
-require './lib/calculator.rb'
+require './lib/communicator.rb'
 
 def start_calculator
-  Calculator.new.get_input
+  @communicator = Communicator.new
+  @communicator.request_input
+  @communicator.process_input
 end
 
 start_calculator

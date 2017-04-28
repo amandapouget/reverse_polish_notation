@@ -2,4 +2,5 @@ require 'rspec'
 require 'pry'
 
 # Models
-require 'calculator'
+require 'communicator'
+require 'calculation'
