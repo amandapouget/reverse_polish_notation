@@ -45,3 +45,21 @@ http://stackoverflow.com/questions/1604305/all-but-last-element-of-ruby-array
 * Ruby array syntax for writing recursive Calculation.compute method
 https://ruby-doc.org/core-2.2.0/Array.html
 http://stackoverflow.com/questions/2381163/ruby-array-find-first-object
+* Programmatically determine the number of operands an operation takes
+http://stackoverflow.com/questions/17590080/is-there-a-way-to-know-how-many-parameters-are-needed-for-a-method
+* Updating to pry-nav
+https://github.com/nixme/pry-nav/issues/20
+* Testing errors with Rspec
+https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/expect-error
+https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers/raise-error-matcher
+* Ruby syntax for custom errors
+http://blog.honeybadger.io/a-beginner-s-guide-to-exceptions-in-ruby/
+* Apparently, the standard for floating point arithmetic is that you *can* divide by zero! (sort of)
+http://stackoverflow.com/questions/7726615/why-in-ruby-0-0-0-3-0-0-and-3-0-behave-differently
+https://ruby-doc.org/core-2.4.0/Float.html
+* Wikipedia Reverse Polish Notation (for independent test cases)
+https://en.wikipedia.org/wiki/Reverse_Polish_notation
+* Ruby syntax for recursing through a file directory
+http://stackoverflow.com/questions/1849699/is-it-possible-to-recursively-require-all-files-in-a-directory-in-ruby
+* Plain Ruby syntax for something like Rails' .blank?
+http://stackoverflow.com/questions/2518397/simplest-way-to-check-for-just-spaces-in-ruby

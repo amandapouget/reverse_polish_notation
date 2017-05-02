@@ -4,22 +4,19 @@
 require './lib/calculation_controller'
 
 class Communicator
-  REQUEST_INPUT = 'input expression > '
-  INVALID_ENTRY = 'invalid entry: calculation aborted'
-  GOODBYE = 'goodbye, world!'
-  STOP_REQUEST = 'q'
-  CLEAR = 'clear'
-  private_constant :REQUEST_INPUT
-  private_constant :INVALID_ENTRY
-  private_constant :GOODBYE
-  private_constant :STOP_REQUEST
-  private_constant :CLEAR
+  REQUEST_INPUT = "input expression > "
+  INVALID_ENTRY = "invalid entry: try again\n"
+  GOODBYE = "Goodbye, world!\n"
+  STOP = "q"
+  CLEAR = "clear"
+  USER_INSTRUCTIONS = "Type \'clear\' to reset your calculation and \'q\' to quit.\n"
+  VALID_ENTRIES = '.+-/* 0123456789'.split('').push(STOP, CLEAR)
 
   def start
-    send 'Type \'clear\' to reset your calculation.'
+    send USER_INSTRUCTIONS
     until stopped? do
       request = request_input
-      process_input(request)
+      respond(request)
     end
   end
 
@@ -30,23 +27,21 @@ class Communicator
   def request_input
     message = request
     if !message
-      send
-      message = STOP_REQUEST
+      puts
+      message = STOP
     end
-    message = message.chomp
-    request_input if message == ""
-    message
+    message.chomp
   end
 
-  def process_input(request)
-    if request == STOP_REQUEST
+  def respond(request)
+    if request.strip.empty?
+    elsif !valid?(request)
+      send(INVALID_ENTRY)
+    elsif request == STOP
       stop
       send(GOODBYE)
     elsif request == CLEAR
       calculation_controller.reset
-    elsif !valid?(request)
-      calculation_controller.reset
-      send(INVALID_ENTRY)
     else
       calculation = calculation_controller.calculate(request)
       send(calculation)
@@ -59,12 +54,12 @@ private
   end
 
   def request
-    print REQUEST_INPUT
+    send(REQUEST_INPUT)
     gets
   end
 
-  def send(data = '')
-    puts data
+  def send(data)
+    print data
   end
 
   def stop
@@ -72,9 +67,9 @@ private
   end
 
   def valid?(request)
-    valid_characters = ' .+-/*0123456789'.split('').push(STOP_REQUEST)
+    VALID_ENTRIES.include?(request) ||
     request.chars.all? do |char|
-      valid_characters.include?(char)
+      VALID_ENTRIES.include?(char)
     end
   end
 end

@@ -2,5 +2,6 @@ require 'rspec'
 require 'pry'
 
 # Models
-require 'communicator'
-require 'calculation'
+Dir[File.expand_path "lib/*.rb"].each do |file|
+  require file
+end

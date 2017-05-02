@@ -1,41 +1,54 @@
-class Calculation
-  attr_reader :elements
+require('./lib/calculation_error.rb')
+require('./lib/operation.rb')
 
-  def initialize()
-    @elements = []
+class Calculation
+  attr_reader :data
+
+  def initialize
+    @data = []
   end
 
-  def add_data(element)
-    if is_operation(element)
-      @elements.push(element)
+  def input(datum)
+    if is_operation?(datum)
+      @data.push(Operation.new(datum))
     else
-      @elements.push(element.to_f)
+      @data.push(datum.to_f)
     end
   end
 
-  def compute(elements = @elements)
-    return elements.last if is_number(elements.last)
-    operation = elements.find { |element| is_operation(element) }
-    numbers = elements[0...elements.find_index(operation)]
-    result = calculate(numbers, operation)
-
-    remaining_elements = elements[(numbers.length + 1)..-1]
-    return result if !remaining_elements
-    compute([result].concat(remaining_elements))
+  def compute(inputs = @data)
+    return inputs.last if inputs.last.is_a?(Numeric)
+    operation = next_operation(inputs)
+    numbers = preceeding(operation, inputs)
+    operands = numbers.pop(operation.num_operands)
+    result = calculate(operation, operands)
+    inputs = numbers.push(result).concat(following(operation, inputs))
+    compute(inputs)
   end
 
 private
-  def is_number(element)
-    !is_operation(element)
+  def is_operation?(datum)
+    '+-/*'.split('').include?(datum)
   end
 
-  def is_operation(element)
-    '+-/*'.split('').include?(element)
+  def next_operation(data)
+    data.find { |datum| datum.is_a?(Operation) }
   end
 
-  def calculate(numbers, operation)
-    numbers.reduce do |total = 0, number|
-      total.send(operation, number)
+  def preceeding(operation, inputs)
+    inputs[0...inputs.find_index(operation)]
+  end
+
+  def following(operation, inputs)
+    start = inputs.find_index(operation) + 1
+    inputs[start..-1] || []
+  end
+
+  def calculate(operation, operands)
+    begin
+      operation.calculate(operands.dup)
+    rescue => e
+      raise CalculationError.new(e, operation, operands)
     end
   end
 end

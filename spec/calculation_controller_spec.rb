@@ -4,17 +4,22 @@ describe CalculationController do
   let(:controller) { CalculationController.new }
 
   describe '#calculate' do
-    describe 'when given a number' do
-      it 'returns a float view of the number' do
-        view = controller.calculate('42')
-        expect(view).to eql "result: 42.0"
+    describe 'when the calculation can compute the data' do
+      it 'returns the result view with the computation' do
+        view = controller.calculate('4 5 +')
+        expect(view).to eql "result: 9.0\n"
       end
     end
 
-    describe 'when given an operation' do
-      it 'returns the calculation result view' do
-        view = controller.calculate('4 5 +')
-        expect(view).to eql "result: 9.0"
+    describe 'when computing the calculation throws an error' do
+      it 'returns the result view with the error message' do
+        view = controller.calculate('4 *')
+        expect(view).to include 'wrong number of arguments'
+      end
+
+      it 'resets itself so the user can try again' do
+        expect(controller).to receive(:reset)
+        view = controller.calculate('4 *')
       end
     end
   end

@@ -5,12 +5,10 @@ require './lib/calculation'
 class CalculationController
   attr_reader :calculation
 
-  def calculate(elements)
+  def calculate(data)
     @calculation ||= Calculation.new
-    elements.split.each do |element|
-      @calculation.add_data(element)
-    end
-    result_view
+    input(data)
+    result_view(computation)
   end
 
   def reset
@@ -18,7 +16,22 @@ class CalculationController
   end
 
 private
-  def result_view
-    "result: " + @calculation.compute.to_s
+  def input(data)
+    data.split.each do |datum|
+      @calculation.input(datum)
+    end
+  end
+
+  def computation
+    begin
+      @calculation.compute.to_s
+    rescue => e
+      reset
+      e.to_s
+    end
+  end
+
+  def result_view(computation)
+    "result: " + computation + "\n"
   end
 end
